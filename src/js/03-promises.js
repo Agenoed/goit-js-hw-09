@@ -19,16 +19,14 @@ function createPromise(position, delay) {
 function onForm(event) {
   event.preventDefault();
 
-  const delayValue = Number(event.currentTarget.delay.value);
+  let delayValue = Number(event.currentTarget.delay.value);
   const stepValue = Number(event.currentTarget.step.value);
   const amountValue = Number(event.currentTarget.amount.value);
 
   for (let i = 1; i <= amountValue; i += 1) {
-    delayValue += stepValue;
-
     createPromise(i, delayValue).then(onSuccess).catch(onError);
 
-    refs.form.reset();
+    delayValue += stepValue;
   }
 }
 
